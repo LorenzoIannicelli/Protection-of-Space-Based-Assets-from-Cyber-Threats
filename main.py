@@ -2,8 +2,6 @@ import argparse
 import json
 from pathlib import Path
 
-from src.loader import load_json
-
 
 def compute_residual(likelihood, impact, total_l_red, total_i_red):
     # Calculate residual risk ensuring parameters never drop below 1
@@ -150,6 +148,11 @@ def parse_args():
     parser.add_argument("--input", required=True, help="Input directory")
     parser.add_argument("--output", required=True, help="Output JSON file")
     return parser.parse_args()
+
+
+def load_json(file_path):
+    with open(file_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
 
 def main():
